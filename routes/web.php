@@ -31,4 +31,12 @@ Route::group(['middleware' => ['web']],function(){
         'uses' => 'UserController@getDashboard',
         'as' => 'dashboard'
     ]);
+
+    Route::get('/profile', [
+        'uses' => 'UserController@getProfile',
+        'as' => 'profile'
+    ]);
+
+    Route::post('profile', 'UserController@update_avatar');
+
  });
