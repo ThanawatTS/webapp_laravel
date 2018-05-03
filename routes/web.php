@@ -10,9 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => ['web']],function(){
+
 
 Route::get('/', function () {
-  return view('login');
+  return view('welcome');
 });
 
 Route::get('/main', function () {
@@ -33,4 +35,36 @@ Route::get('/r-SL', function () {
 
 Route::get('/r-PEL', function () {
   return view('personal');
+});
+
+Route::post('/signup',[
+  'uses'=>'UserController@postSignUp',
+  'as'=>'signup'
+]);
+
+Route::post('/signin',[
+  'uses'=>'UserController@postSignIn',
+  'as'=>'signin'
+]);
+
+Route::get('/dashboard', [
+  'uses' => 'UserController@getDashboard',
+  'as' => 'dashboard'
+]);
+
+Route::get('/profile', [
+  'uses' => 'UserController@getProfile',
+  'as' => 'profile'
+]);
+Route::get('/signinal',[
+  'uses' => 'UserController@getSigninal',
+  'as' => 'signinal'
+]);
+Route::get('/signinfa',[
+  'uses' => 'UserController@getSigninfa',
+  'as'=>'signinfa'
+]);
+
+  Route::post('editProfile', 'UserController@update_avatar');
+  Route::get('editProfile', 'UserController@editProfile');
 });
